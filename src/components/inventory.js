@@ -1,11 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Backpack from './backpack';
 import Locker from './locker';
 
-export default class Inventory extends React.Component {
+export function Inventory(props) {
 
-
-  render(){
     
     return (
       <div>
@@ -13,6 +12,13 @@ export default class Inventory extends React.Component {
         <Locker />
       </div>
     );
-  }
 
 }
+
+const mapStateToProps = state => ({
+  items: state.items,
+  loading: state.loading,
+  error: state.error
+});
+
+export default connect(mapStateToProps)(Inventory);
