@@ -4,9 +4,23 @@ import {connect} from 'react-redux';
 
 export function ItemList(props) {
 
-  const items = props.items.map((item, index) => {
+  let category;
+  if(!props.category){
+    category = 'all';
+  }else{
+    category=props.category;
+  }
 
-    if (item.location === props.location) {
+  const items = props.items.map((item, index) => {
+    if (item.location === props.location && item.category===props.category) {
+      return (
+        <tr key={index}>
+          <td>{item.name}</td>
+          <td>{item.quantity}</td>
+          <td>{item.weight}</td>
+        </tr>
+      )
+    } else if(item.location===props.location){
       return (
         <tr key={index}>
           <td>{item.name}</td>
@@ -21,7 +35,7 @@ export function ItemList(props) {
 
     return (
       <div>
-        <strong>{props.location}</strong>
+        <strong>{props.location}-{category}</strong>
         <table>
             <tbody>
             <tr>

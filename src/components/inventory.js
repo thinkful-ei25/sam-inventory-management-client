@@ -1,14 +1,25 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import ItemList from './item-list';
+//import {connect} from 'react-redux';
+import Category from './category';
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 
 export default function Inventory(props) {
 
     
     return (
       <div>
-        <ItemList location={'backpack'}/>
-        <ItemList location={'locker'}/>
+        <Tabs>
+          <TabList>
+            <Tab>Backpack</Tab>
+            <Tab>Locker</Tab>
+          </TabList>
+          <TabPanel>
+            <Category location={'backpack'}/>
+          </TabPanel>
+          <TabPanel>
+            <Category location={'locker'}/>
+          </TabPanel>
+        </Tabs>
       </div>
     );
 

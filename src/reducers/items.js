@@ -19,18 +19,14 @@ export default function itemReducer(state=initialState, action){
       loading: true,
       error: null
     };
-  }
-
-  if(action.type === FETCH_ITEMS_SUCCESS){
+  } else if(action.type === FETCH_ITEMS_SUCCESS){
     return {
       ...state,
       loading: false,
       items: action.items,
       error: null
     };
-  }
-
-  if(action.type === FETCH_ITEMS_ERROR){
+  } else if(action.type === FETCH_ITEMS_ERROR){
     return {
       ...state,
       loading: false,

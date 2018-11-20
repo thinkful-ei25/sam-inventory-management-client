@@ -1,4 +1,5 @@
 import {API_BASE_URL} from '../config';
+import {SubmissionError} from 'redux-form';
 
 export const FETCH_ITEMS_REQUEST = 'FETCH_ITEMS_REQUEST';
 const fetchItemsRequest = () => ({
@@ -19,7 +20,6 @@ const fetchItemsError = error => ({
 
 export const fetchItems = () => (dispatch) => {
   dispatch(fetchItemsRequest());
-  console.log(API_BASE_URL);
   return fetch(`${API_BASE_URL}/api/items`)
     .then((res)=>{
       if(!res.ok){
@@ -38,4 +38,41 @@ export const fetchItems = () => (dispatch) => {
     .then(items => dispatch(fetchItemsSuccess(items)))
     .catch(error=>dispatch(fetchItemsError(error)));
 
+};
+
+export const addItem = item => (dispatch) => {
+  return fetch(`${API_BASE_URL}/api/items`,
+  {
+    method: 'POST',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type' : 'application/json'
+    }
+  })
+  .then(res=>{
+    if(!res.ok){
+      if (
+        res.headers.has('content-type') &&
+        res.headers.get('content-type').startsWith('application/json')
+      ) {
+        // It's a nice JSON error returned by us, so decode it
+        console.log('returning json error');
+        return res.json().then(err => Promise.reject(err));
+      }
+      return Promise.reject({
+        code: res.status,
+        message: res.statusText
+      });
+    }
+    return;
+  })
+  .then(()=>console.log('Submitted with values', item))
+  .catch(err=>{
+    console.log(err);
+    return Promise.reject(
+      new SubmissionError({
+        _error: err.message
+      })
+    )
+  })
 };
