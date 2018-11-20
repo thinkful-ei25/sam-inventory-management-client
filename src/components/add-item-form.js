@@ -7,13 +7,36 @@ import {addItem} from '../actions/items';
 export class AddItemForm extends React.Component{
   
   
+  handleSubmit(values){
+    this.props.dispatch(addItem(values));
+  }
+  
   render(){
     
-    
+    let successMessage;
+    if(this.props.submitSucceeded){
+      successMessage=(
+        <div>
+          Item added successfully!
+        </div>
+      );
+    }
+
+    let errorMessage;
+    if(this.props.error){
+      errorMessage=(
+        <div>{this.props.error}</div>
+      );
+    }
+
+
+
     return(
-        <form onSubmit={
-          this.props.handleSubmit(values=>this.props.dispatch(addItem(values)))
-        }>
+        <form onSubmit={this.props.handleSubmit(values=>
+          this.handleSubmit(values)
+        )}>
+          {successMessage}
+          {errorMessage}
           <label htmlFor="name">Item Name</label>
           <Field component={Input} element="input" type="text" name="name" id="name"></Field>
           <label htmlFor="weight">Item Weight</label>
@@ -27,13 +50,20 @@ export class AddItemForm extends React.Component{
             <option value="misc">Misc.</option>
           </Field><br/>
           <label htmlFor="quantity">Item Quantity</label>
-          <Field component={Input} type="number" name="weight" id="weight"></Field>
+          <Field component={Input} type="number" name="quantity" id="quanity"></Field>
           <label htmlFor="location">Where do you want to store your item? </label>
           <Field component="select" id="location" name="location">
             <option value="locker">Locker</option>
             <option value="backpack">Backpack</option>
           </Field><br/>
-          <button>Add Item</button>
+        <button
+          type="submit"
+          disabled={
+            this.props.pristine ||
+            this.props.submitting
+          }>
+          Add Item
+          </button>
         </form>
       );
   }
@@ -42,10 +72,5 @@ export class AddItemForm extends React.Component{
 }
 
 export default reduxForm({
-  form: 'addItem',
-  initialValues: {
-    
-  },
-  onSubmitFail: (errors, dispatch)=>
-    dispatch(focus('addItem', Object.keys(errors)[0]))
+  form: 'item'
 })(AddItemForm);

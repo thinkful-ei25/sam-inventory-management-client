@@ -1,5 +1,5 @@
 import {API_BASE_URL} from '../config';
-import {SubmissionError} from 'redux-form';
+//import {SubmissionError} from 'redux-form';
 
 export const FETCH_ITEMS_REQUEST = 'FETCH_ITEMS_REQUEST';
 const fetchItemsRequest = () => ({
@@ -40,7 +40,26 @@ export const fetchItems = () => (dispatch) => {
 
 };
 
+export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
+const addItemRequest = () => ({
+  type: ADD_ITEM_REQUEST
+});
+
+export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
+const addItemSuccess = item => ({
+  type: ADD_ITEM_SUCCESS,
+  item
+});
+
+export const ADD_ITEM_ERROR = 'ADD_ITEM_ERROR';
+const addItemError = error => ({
+  type: ADD_ITEM_ERROR,
+  error
+});
+
+
 export const addItem = item => (dispatch) => {
+  dispatch(addItemRequest());
   return fetch(`${API_BASE_URL}/api/items`,
   {
     method: 'POST',
@@ -64,15 +83,14 @@ export const addItem = item => (dispatch) => {
         message: res.statusText
       });
     }
-    return;
+    //console.log(res);
+    return res;
   })
-  .then(()=>console.log('Submitted with values', item))
+  .then(res=>res.json())
+  .then((data)=>{
+    dispatch(addItemSuccess(data));
+  })
   .catch(err=>{
-    console.log(err);
-    return Promise.reject(
-      new SubmissionError({
-        _error: err.message
-      })
-    )
+    dispatch(addItemError(err));
   })
 };

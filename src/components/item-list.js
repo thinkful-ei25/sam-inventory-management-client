@@ -50,10 +50,11 @@ export function ItemList(props) {
 
 }
 
-const mapStateToProps = state => ({
-  items: state.items,
-  error: state.error,
-  loading: state.loading
-});
+const mapStateToProps = state => {
+  return {
+  items: state.itemReducer.items,
+  error: state.itemReducer.error,
+  loading: state.itemReducer.loading
+  }};
 
 export default connect(mapStateToProps)(ItemList);
