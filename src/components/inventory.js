@@ -1,24 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Backpack from './backpack';
-import Locker from './locker';
+import ItemList from './item-list';
 
-export function Inventory(props) {
+export default function Inventory(props) {
 
     
     return (
       <div>
-        <Backpack />
-        <Locker />
+        <ItemList location={'backpack'}/>
+        <ItemList location={'locker'}/>
       </div>
     );
 
 }
 
-const mapStateToProps = state => ({
-  items: state.items,
-  loading: state.loading,
-  error: state.error
-});
+// const mapStateToProps = state => ({
+//   items: state.items,
+//   loading: state.loading,
+//   error: state.error
+// });
 
-export default connect(mapStateToProps)(Inventory);
+// export default connect(mapStateToProps)(Inventory);

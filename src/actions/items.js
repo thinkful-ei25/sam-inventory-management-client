@@ -19,6 +19,7 @@ const fetchItemsError = error => ({
 
 export const fetchItems = () => (dispatch) => {
   dispatch(fetchItemsRequest());
+  console.log(API_BASE_URL);
   return fetch(`${API_BASE_URL}/api/items`)
     .then((res)=>{
       if(!res.ok){

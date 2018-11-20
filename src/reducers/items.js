@@ -7,7 +7,9 @@ import {
 const initialState = {
   items : [],
   loading: false,
-  error: null 
+  error: null,
+  inventoryLocation: null,
+  inventoryCategory: null 
 };
 
 export default function itemReducer(state=initialState, action){
