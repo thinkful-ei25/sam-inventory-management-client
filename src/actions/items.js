@@ -83,7 +83,6 @@ export const addItem = item => (dispatch) => {
         message: res.statusText
       });
     }
-    //console.log(res);
     return res;
   })
   .then(res=>res.json())
@@ -94,3 +93,4 @@ export const addItem = item => (dispatch) => {
     dispatch(addItemError(err));
   })
 };
+

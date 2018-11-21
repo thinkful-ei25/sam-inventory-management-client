@@ -11,8 +11,7 @@ const initialState = {
   items : [],
   loading: false,
   error: null,
-  inventoryLocation: null,
-  inventoryCategory: null 
+  addingItem: false
 };
 
 export default function itemReducer(state=initialState, action){
@@ -43,7 +42,6 @@ export default function itemReducer(state=initialState, action){
       error: null
     }
   } else if(action.type === ADD_ITEM_SUCCESS){
-    console.log(action);
     return {
       ...state,
       loading: false,

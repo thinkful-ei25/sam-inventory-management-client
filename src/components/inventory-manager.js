@@ -27,10 +27,11 @@ class InventoryManager extends React.Component{
 
 }
 
-const mapStateToProps = state => ({
-  items: state.guesses,
-  error: state.error,
-  loading: state.loading
-});
+const mapStateToProps = state => {
+  return {
+  items: state.itemReducer.items,
+  error: state.itemReducer.error,
+  loading: state.itemReducer.loading
+}};
 
 export default connect(mapStateToProps)(InventoryManager);
