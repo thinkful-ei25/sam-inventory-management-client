@@ -12,12 +12,15 @@ export class Inventory extends React.Component{
   }
 
   calcWeight(location){
-    let totalWeight;
+    let totalWeight=0;
     let items = this.props.items;
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
-      if (items[i].location === location) {
-        totalWeight += item.weight * item.quantity;
+      let itemWeight = parseInt(item.weight,10);
+      let itemQuantity = parseInt(item.quantity,10);
+      let itemTotal = itemQuantity*itemWeight;
+      if (item.location === location) {
+        totalWeight += itemTotal;
       }
     }
     return totalWeight;
@@ -25,7 +28,6 @@ export class Inventory extends React.Component{
   
 
   render(){
-    console.log(this.props);
     return (
     <div>
       <Tabs>
@@ -40,9 +42,9 @@ export class Inventory extends React.Component{
           <Category location={'locker'} />
         </TabPanel>
       </Tabs>
-      <div>
-        <span>Backpack:{this.calcWeight('backpack')}</span>
-        <span>Locker:{this.calcWeight('locker')}</span>
+      <div><strong><span>Backpack: {this.calcWeight('backpack')}/150 </span>
+        <span>Locker: {this.calcWeight('locker')}/400 </span></strong>
+        
       </div>
     </div>
   );   

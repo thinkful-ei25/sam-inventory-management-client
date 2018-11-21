@@ -2,6 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 
+function emptyData(items){
+  for(let i=0; i<items.length; i++){
+    if(items[i]){
+      return;
+    }
+  }
+  return (<tr><td><i>No items</i></td><td>N/A</td><td>N/A</td></tr>)
+}
+
 export function ItemList(props) {
 
   let category;
@@ -33,20 +42,20 @@ export function ItemList(props) {
     
   });
 
-    return (
-      <div>
-        <strong>{props.location}-{category}</strong>
-        <table>
-            <tbody>
-            <tr>
-              <th>Item</th>
-              <th>Quanity</th>
-              <th>Weight</th>
-            </tr>
-            {items}</tbody>
-        </table>
-      </div>
-    )
+  return (
+    <div>
+      <strong>{props.location}-{category}</strong>
+      <table>
+        <tbody>
+          <tr>
+            <th>Item</th>
+            <th>Quanity</th>
+            <th>Weight</th>
+          </tr>
+          {items}{emptyData(items)}</tbody>
+      </table>
+    </div>
+  )
 
 }
 
