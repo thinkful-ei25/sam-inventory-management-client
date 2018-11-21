@@ -16,7 +16,7 @@ export default function Category(props){
         </TabList>
 
         <TabPanel>
-          <ItemList category={''} location={props.location}/>
+          <ItemList category={'all'} location={props.location}/>
         </TabPanel>
         <TabPanel>
           <ItemList category={'weapons'} location={props.location}/>

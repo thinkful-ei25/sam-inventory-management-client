@@ -20,7 +20,7 @@ export function ItemList(props) {
           <td>{item.weight}</td>
         </tr>
       )
-    } else if(item.location===props.location){
+    } else if(props.category==='all'){
       return (
         <tr key={index}>
           <td>{item.name}</td>
