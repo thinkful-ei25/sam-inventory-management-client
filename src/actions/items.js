@@ -57,7 +57,6 @@ const addItemError = error => ({
   error
 });
 
-
 export const addItem = item => (dispatch) => {
   dispatch(addItemRequest());
   return fetch(`${API_BASE_URL}/api/items`,
@@ -93,4 +92,3 @@ export const addItem = item => (dispatch) => {
     dispatch(addItemError(err));
   })
 };
-

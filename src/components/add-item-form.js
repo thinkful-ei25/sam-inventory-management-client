@@ -1,5 +1,5 @@
 import React from 'react';
-import {reduxForm, Field, focus} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 //import {required, isNumber} from '../validators';
 import Input from './input';
 import {addItem} from '../actions/items';
@@ -9,6 +9,7 @@ export class AddItemForm extends React.Component{
   
   handleSubmit(values){
     this.props.dispatch(addItem(values));
+    this.props.handleClick();
   }
   
   render(){

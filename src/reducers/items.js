@@ -56,7 +56,5 @@ export default function itemReducer(state=initialState, action){
       error: action.error
     };
   }
-
   return state;
-
 }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Category from './category';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {fetchItems} from '../actions/items';
+import './inventory.css';
 
 export class Inventory extends React.Component{
 
@@ -29,7 +30,7 @@ export class Inventory extends React.Component{
 
   render(){
     return (
-    <div>
+    <div className="inventory-container">
       <Tabs>
         <TabList>
           <Tab>Backpack</Tab>

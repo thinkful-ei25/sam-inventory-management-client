@@ -6,6 +6,8 @@ import Inventory from './inventory';
 import Header from './header';
 import AddItem from './add-item';
 
+import './inventory-manager.css';
+
 class InventoryManager extends React.Component{
 
   componentDidMount(){

@@ -2,6 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 
+function handleClick(e){
+  e.stopPropagation();
+  console.log('hi there');
+}
+
 function emptyData(items){
   for(let i=0; i<items.length; i++){
     if(items[i]){
@@ -21,17 +26,17 @@ export function ItemList(props) {
   }
 
   const items = props.items.map((item, index) => {
-    if (item.location === props.location && item.category===props.category) {
+    if (item.location === props.location && item.category===category) {
       return (
-        <tr key={index}>
+        <tr key={index} onClick={e=>handleClick(e)}>
           <td>{item.name}</td>
           <td>{item.quantity}</td>
           <td>{item.weight}</td>
         </tr>
       )
-    } else if(props.category==='all' && item.location === props.location){
+    } else if(category==='all' && item.location === props.location){
       return (
-        <tr key={index}>
+        <tr key={index} onClick={e=>handleClick(e)}>
           <td>{item.name}</td>
           <td>{item.quantity}</td>
           <td>{item.weight}</td>
@@ -44,8 +49,7 @@ export function ItemList(props) {
 
   return (
     <div>
-      <strong>{props.location}-{category}</strong>
-      <table>
+      <table className="inventory-list">
         <tbody>
           <tr>
             <th>Item</th>

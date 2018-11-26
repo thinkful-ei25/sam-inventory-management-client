@@ -3,21 +3,34 @@ import {connect} from 'react-redux';
 
 import AddItemForm from './add-item-form';
 
-export function AddItem(props){
+export class AddItem extends React.Component{
+  
+  state = {
+    addingItem: false
+  };
 
-  if(props.addingItem){
-    return(
-      <div>
-        <AddItemForm />
-      </div>
-    );
-  } else{
-    return (
-      <div>
-        <button>Press me!</button>
-      </div>
-    );
+  handleClick(){
+   //e.preventDefault();
+    this.setState({addingItem: !this.state.addingItem})
+   }
+
+  render(){
+    if(this.state.addingItem){
+      return(
+        <div>
+          <AddItemForm handleClick={e=>this.handleClick(e)}/>
+          <button onClick={(e)=>this.handleClick(e)}>Exit</button>
+        </div>
+      );
+    } else{
+      return (
+        <div>
+          <button onClick={(e)=>this.handleClick(e)}>Add Item</button>
+        </div>
+      );
+    }
   }
+  
   
 }
 
