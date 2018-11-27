@@ -3,14 +3,14 @@ import {reduxForm, Field} from 'redux-form';
 import {connect} from 'react-redux';
 //import {required, isNumber} from '../validators';
 import Input from './input';
-import {addItem} from '../actions/items';
+import {addItem, toggleModal} from '../actions/items';
 
 export class ItemForm extends React.Component{
   
   
   handleSubmit(values){
     this.props.dispatch(addItem(values));
-    this.props.handleClick();
+    this.props.dispatch(toggleModal(false));
   }
 
   
@@ -78,7 +78,8 @@ export class ItemForm extends React.Component{
 const mapStateToProps = state => {
   return {
     editingItem: state.itemReducer.editingItem,
-    expandedItem: state.itemReducer.expandedItem
+    expandedItem: state.itemReducer.expandedItem,
+    showingModal: state.itemReducer.showingModal
   };
 };
 

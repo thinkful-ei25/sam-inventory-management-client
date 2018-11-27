@@ -10,7 +10,11 @@ import {
   ADD_ITEM_SUCCESS,
   DROP_ITEM_ERROR,
   DROP_ITEM_REQUEST,
-  DROP_ITEM_SUCCESS
+  DROP_ITEM_SUCCESS,
+  EDIT_ITEM_ERROR,
+  EDIT_ITEM_REQUEST,
+  EDIT_ITEM_SUCCESS,
+  TOGGLE_MODAL
 }  from '../actions/items';
 
 const initialState = {
@@ -19,7 +23,8 @@ const initialState = {
   error: null,
   addingItem: false,
   expandedItem: null,
-  editingItem: false
+  editingItem: false,
+  showingModal: false
 };
 
 export default function itemReducer(state=initialState, action){
@@ -84,6 +89,26 @@ export default function itemReducer(state=initialState, action){
       items: [],
       error: action.error
     };
+  } else if(action.type === EDIT_ITEM_REQUEST){
+    return {
+      ...state,
+      loading: true,
+      error: null
+    }
+  } else if(action.type === EDIT_ITEM_SUCCESS){
+    return {
+      ...state,
+      loading: false,
+      items: [...state.items.filter(item=>item.id!==action.item.id),action.item],
+      error: null
+    };
+  } else if(action.type === ADD_ITEM_ERROR){
+    return {
+      ...state,
+      loading: false,
+      items: [],
+      error: action.error
+    };
   }
   else if(action.type === DROP_ITEM_REQUEST){
     return {
@@ -105,6 +130,12 @@ export default function itemReducer(state=initialState, action){
       items: [],
       error: action.error
     };
+  } else if(action.type === TOGGLE_MODAL){
+    return {
+      ...state,
+      loading: false,
+      showingModal: action.value
+    }
   }
   return state;
 }

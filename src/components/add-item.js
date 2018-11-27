@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 
 import ItemForm from './item-form';
 
+import './add-item.css';
+import {toggleModal} from '../actions/items';
+
 export class AddItem extends React.Component{
   
   state = {
@@ -12,17 +15,22 @@ export class AddItem extends React.Component{
   handleClick(){
    //e.preventDefault();
     this.setState({addingItem: !this.state.addingItem})
+    this.props.dispatch(toggleModal(true));
    }
 
   render(){
+
     if(this.state.addingItem){
       return(
         <div>
-          <ItemForm handleClick={e=>this.handleClick(e)}/>
-          <button onClick={(e)=>this.handleClick(e)}>Exit</button>
+          <div className="add-item-modal">
+            <ItemForm handleClick={e => this.handleClick(e)} />
+            <button onClick={(e) => this.handleClick(e)}>Exit</button>
+          </div>
         </div>
+
       );
-    } else{
+    } else {
       return (
         <div>
           <button onClick={(e)=>this.handleClick(e)}>Add Item</button>
@@ -38,7 +46,8 @@ const mapStateToProps = state => ({
   items: state.itemReducer.items,
   loading: state.itemReducer.loading,
   error: state.itemReducer.error,
-  addingItem: state.itemReducer.addingItem
+  addingItem: state.itemReducer.addingItem,
+  showingModal: state.itemReducer.showingModal
 });
 
 export default connect(mapStateToProps)(AddItem);

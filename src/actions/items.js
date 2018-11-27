@@ -169,3 +169,62 @@ export const dropItem = (id) => (dispatch) => {
     .then(() => dispatch(dropItemSuccess(id)))
     .catch(error=>dispatch(dropItemError(error)));
 };
+
+export const EDIT_ITEM_REQUEST = 'EDIT_ITEM_REQUEST';
+const editItemRequest = () => ({
+  type: EDIT_ITEM_REQUEST
+});
+
+export const EDIT_ITEM_SUCCESS = 'EDIT_ITEM_SUCCESS';
+const editItemSuccess = (item) => ({
+  type: EDIT_ITEM_SUCCESS,
+  item
+});
+
+export const EDIT_ITEM_ERROR = 'EDIT_ITEM_ERROR';
+const editItemError = error => ({
+  type: EDIT_ITEM_ERROR,
+  error
+});
+
+export const editItem = (item) => dispatch =>{
+  dispatch(editItemRequest());
+  return fetch(`${API_BASE_URL}/api/items/${item.id}`,
+  {
+    method: 'PUT',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type' : 'application/json'
+    }
+  })
+  .then(res=>{
+    if(!res.ok){
+      if (
+        res.headers.has('content-type') &&
+        res.headers.get('content-type').startsWith('application/json')
+      ) {
+        // It's a nice JSON error returned by us, so decode it
+        console.log('returning json error');
+        return res.json().then(err => Promise.reject(err));
+      }
+      return Promise.reject({
+        code: res.status,
+        message: res.statusText
+      });
+    }
+    return res;
+  })
+  .then(res=>res.json())
+  .then((data)=>{
+    dispatch(editItemSuccess(data));
+  })
+  .catch(err=>{
+    dispatch(editItemError(err));
+  })
+};
+
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const toggleModal = (value) => ({
+  type: TOGGLE_MODAL,
+  value
+});

@@ -15,6 +15,8 @@ class InventoryManager extends React.Component{
   }
 
   render() {
+
+    
     return (
       <div>
         <Header />
@@ -33,7 +35,8 @@ const mapStateToProps = state => {
   return {
   items: state.itemReducer.items,
   error: state.itemReducer.error,
-  loading: state.itemReducer.loading
+  loading: state.itemReducer.loading,
+  showingModal : state.itemReducer.showingModal
 }};
 
 export default connect(mapStateToProps)(InventoryManager);

@@ -4,7 +4,7 @@ import {fetchItem, fetchItems, dropItem} from '../actions/items';
 
 import './item-list.css';
 
-import ItemForm from './item-form';
+import EditForm from './edit-form';
 
 export class ItemList extends React.Component {
 
@@ -57,13 +57,13 @@ export class ItemList extends React.Component {
   closeItem(e){
     e.stopPropagation();
     this.setState({
-      showingItem: false
+      showingItem: false,
+      editingItem: false
     })
   }
 
   editItem(e,id){
     e.stopPropagation();
-    console.log('hi there');
     this.setState({
       editingItem: true
     });
@@ -132,9 +132,8 @@ export class ItemList extends React.Component {
     let editedItem;
     if(this.state.editingItem&&this.state.showingItem){
       editedItem=(<div>
-        <ItemForm />
+        <EditForm item={this.props.exandedItem} />
       </div>);
-      console.log('hi');
     }
 
     let items=this.generateItems();
