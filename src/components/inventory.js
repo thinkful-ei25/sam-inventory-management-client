@@ -28,26 +28,29 @@ export class Inventory extends React.Component{
   }
   
 
+
   render(){
     return (
-    <div className="inventory-container">
-      <Tabs>
-        <TabList>
-          <Tab>Backpack</Tab>
-          <Tab>Locker</Tab>
-        </TabList>
-        <TabPanel>
-          <Category location={'backpack'} />
-        </TabPanel>
-        <TabPanel>
-          <Category location={'locker'} />
-        </TabPanel>
-      </Tabs>
-      <div><strong><span>Backpack: {this.calcWeight('backpack')}/150 </span>
-        <span>Locker: {this.calcWeight('locker')}/400 </span></strong>
-        
+      <div className="inventory-container">
+        <Tabs>
+          <TabList>
+            <Tab>Backpack</Tab>
+            <Tab>Locker</Tab>
+          </TabList>
+          <TabPanel>
+            <Category location={'backpack'} />
+          </TabPanel>
+          <TabPanel>
+            <Category location={'locker'} />
+          </TabPanel>
+        </Tabs>
+        <div className="weight-totals">
+          <strong>
+            <span>Backpack: {this.calcWeight('backpack')}/150 </span>
+            <span>Locker: {this.calcWeight('locker')}/400 </span>
+          </strong>
+        </div>
       </div>
-    </div>
   );   
 }
   

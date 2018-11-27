@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import AddItemForm from './add-item-form';
+import ItemForm from './item-form';
 
 export class AddItem extends React.Component{
   
@@ -18,7 +18,7 @@ export class AddItem extends React.Component{
     if(this.state.addingItem){
       return(
         <div>
-          <AddItemForm handleClick={e=>this.handleClick(e)}/>
+          <ItemForm handleClick={e=>this.handleClick(e)}/>
           <button onClick={(e)=>this.handleClick(e)}>Exit</button>
         </div>
       );

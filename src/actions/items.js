@@ -40,6 +40,45 @@ export const fetchItems = () => (dispatch) => {
 
 };
 
+export const FETCH_ITEM_REQUEST = 'FETCH_ITEM_REQUEST';
+const fetchItemRequest = () => ({
+  type: FETCH_ITEM_REQUEST
+});
+
+export const FETCH_ITEM_SUCCESS = 'FETCH_ITEM_SUCCESS';
+const fetchItemSuccess = item => ({
+  type: FETCH_ITEM_SUCCESS,
+  item
+});
+
+export const FETCH_ITEM_ERROR = 'FETCH_ITEM_ERROR';
+const fetchItemError = error => ({
+  type: FETCH_ITEM_ERROR,
+  error
+});
+
+export const fetchItem = (id) => (dispatch) => {
+  dispatch(fetchItemRequest());
+  return fetch(`${API_BASE_URL}/api/items/${id}`)
+    .then((res)=>{
+      if(!res.ok){
+        const contentType = res.headers.get('content-type');
+        if(contentType && contentType.startsWith('application/json')){
+          return res.json().then(err=> Promise.reject(err));
+        }
+
+        const error = new Error(res.statusText);
+        error.code = res.status;
+        return Promise.reject(error);
+      }
+      return res;
+    })
+    .then(res=>res.json())
+    .then(item => dispatch(fetchItemSuccess(item)))
+    .catch(error=>dispatch(fetchItemError(error)));
+};
+
+
 export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
 const addItemRequest = () => ({
   type: ADD_ITEM_REQUEST
@@ -91,4 +130,42 @@ export const addItem = item => (dispatch) => {
   .catch(err=>{
     dispatch(addItemError(err));
   })
+};
+
+
+export const DROP_ITEM_REQUEST = 'DROP_ITEM_REQUEST';
+const dropItemRequest = () => ({
+  type: DROP_ITEM_REQUEST
+});
+
+export const DROP_ITEM_SUCCESS = 'DROP_ITEM_SUCCESS';
+const dropItemSuccess = (id) => ({
+  type: DROP_ITEM_SUCCESS,
+  id
+});
+
+export const DROP_ITEM_ERROR = 'DROP_ITEM_ERROR';
+const dropItemError = error => ({
+  type: DROP_ITEM_ERROR,
+  error
+});
+
+export const dropItem = (id) => (dispatch) => {
+  dispatch(dropItemRequest());
+  return fetch(`${API_BASE_URL}/api/items/${id}`,{method: "DELETE"})
+    .then((res)=>{
+      if(!res.ok){
+        const contentType = res.headers.get('content-type');
+        if(contentType && contentType.startsWith('application/json')){
+          return res.json().then(err=> Promise.reject(err));
+        }
+
+        const error = new Error(res.statusText);
+        error.code = res.status;
+        return Promise.reject(error);
+      }
+      return res;
+    })
+    .then(() => dispatch(dropItemSuccess(id)))
+    .catch(error=>dispatch(dropItemError(error)));
 };
