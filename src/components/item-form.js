@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import Input from './input';
 import {addItem, toggleModal} from '../actions/items';
 
+import './item-form.css';
+
 export class ItemForm extends React.Component{
   
   

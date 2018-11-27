@@ -54,12 +54,13 @@ export class ItemList extends React.Component {
     return null;
   }
 
-  closeItem(e){
-    e.stopPropagation();
+  closeItem(){
+    //e.stopPropagation();
     this.setState({
       showingItem: false,
       editingItem: false
     })
+    console.log('called closeItem()');
   }
 
   editItem(e,id){
@@ -132,7 +133,7 @@ export class ItemList extends React.Component {
     let editedItem;
     if(this.state.editingItem&&this.state.showingItem){
       editedItem=(<div>
-        <EditForm item={this.props.exandedItem} />
+        <EditForm item={this.props.expandedItem} onClose={()=>this.closeItem()}/>
       </div>);
     }
 

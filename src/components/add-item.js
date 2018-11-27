@@ -23,7 +23,7 @@ export class AddItem extends React.Component{
     if(this.state.addingItem){
       return(
         <div>
-          <div className="add-item-modal">
+          <div className="add-item-container">
             <ItemForm handleClick={e => this.handleClick(e)} />
             <button onClick={(e) => this.handleClick(e)}>Exit</button>
           </div>
@@ -32,7 +32,7 @@ export class AddItem extends React.Component{
       );
     } else {
       return (
-        <div>
+        <div className="add-item-container">
           <button onClick={(e)=>this.handleClick(e)}>Add Item</button>
         </div>
       );

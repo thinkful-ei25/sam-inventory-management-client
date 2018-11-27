@@ -102,11 +102,11 @@ export default function itemReducer(state=initialState, action){
       items: [...state.items.filter(item=>item.id!==action.item.id),action.item],
       error: null
     };
-  } else if(action.type === ADD_ITEM_ERROR){
+  } else if(action.type === EDIT_ITEM_ERROR){
     return {
       ...state,
       loading: false,
-      items: [],
+      items: state.items,
       error: action.error
     };
   }

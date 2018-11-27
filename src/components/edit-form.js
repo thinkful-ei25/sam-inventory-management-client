@@ -35,11 +35,15 @@ export class EditForm extends React.Component{
       );
     }
 
-    const item = this.props.exandedItem;
+    const item = this.props.item;
 
     return (
-      <form onSubmit={this.props.handleSubmit((values) =>
-        this.handleSubmit(values)
+      <form onSubmit={this.props.handleSubmit((values) =>{
+        this.handleSubmit(values);
+        this.props.onClose()
+      }
+        
+
       )}>
         {successMessage}
         {errorMessage}
@@ -65,7 +69,6 @@ export class EditForm extends React.Component{
         <button
           type="submit"
           disabled={
-            this.props.pristine ||
             this.props.submitting
           }>
           Edit Item
@@ -79,16 +82,21 @@ export class EditForm extends React.Component{
 
 }
 
-const mapStateToProps = state => {
+
+
+const mapStateToProps = (state,myProps) => {
+  console.log(myProps);
   return {
     editingItem: state.itemReducer.editingItem,
     expandedItem: state.itemReducer.expandedItem,
-    showingModal: state.itemReducer.showingModal
+    showingModal: state.itemReducer.showingModal,
+    initialValues: myProps.item
   };
 };
 
-EditForm = connect(mapStateToProps)(EditForm)
-
-export default reduxForm({
+EditForm = reduxForm({
   form: 'item'
 })(EditForm);
+
+export default connect(mapStateToProps)(EditForm);
+
