@@ -20,7 +20,8 @@ class InventoryManager extends React.Component{
     return (
       <div>
         <Header />
-        <main role="main">
+        <main role="main" className="screen">
+          <h1>Inventory Manager</h1>
           <AddItem />
           <Inventory />
         </main>

@@ -24,7 +24,22 @@ export class Inventory extends React.Component{
         totalWeight += itemTotal;
       }
     }
-    return totalWeight;
+    let limit;
+    if(location==='locker'){
+      limit=400;
+    } else if (location==='backpack'){
+      limit=150;
+    }
+    let weightClass;
+    if(totalWeight>limit){
+      weightClass='overencumbered';
+    } else {
+      weightClass='normal-weight';
+    }
+
+    return (
+      <span className={weightClass}>{totalWeight}/{limit}</span>
+    );
   }
   
 
@@ -46,8 +61,8 @@ export class Inventory extends React.Component{
         </Tabs>
         <div className="weight-totals">
           <strong>
-            <span>Backpack: {this.calcWeight('backpack')}/150 </span>
-            <span>Locker: {this.calcWeight('locker')}/400 </span>
+            <div className="weight-total">Backpack: {this.calcWeight('backpack')} </div>
+            <div className="weight-total">Locker: {this.calcWeight('locker')}</div>
           </strong>
         </div>
       </div>

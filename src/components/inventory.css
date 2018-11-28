@@ -26,7 +26,7 @@
 }
 
 .react-tabs__tab--selected {
-  background: #fff;
+  background: #0c0;
   border-color: #aaa;
   color: black;
   border-radius: 5px 5px 0 0;
@@ -60,3 +60,13 @@
 .react-tabs__tab-panel--selected {
   display: block;
 }
+
+.weight-total {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.overencumbered {
+  color: red;
+}
+

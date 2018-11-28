@@ -1,5 +1,7 @@
 .topBar {
-  background-color: forestgreen;
+  background-color: #0c0;
   color: white;
   padding:10px;
+  font-family:'Fira Mono', monospace;
+  font-size:20px;
 }

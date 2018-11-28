@@ -6,7 +6,6 @@ export default function Header(props){
   return(
     <header>
       <TopNav />
-      <h1>Inventory Manager</h1>
     </header>
   );
 }

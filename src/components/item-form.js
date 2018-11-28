@@ -38,7 +38,7 @@ export class ItemForm extends React.Component{
     return (
       <form onSubmit={this.props.handleSubmit(values =>
         this.handleSubmit(values)
-      )}>
+      )} className="add-form">
         {successMessage}
         {errorMessage}
         <label htmlFor="name">Item Name</label>
