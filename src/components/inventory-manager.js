@@ -10,6 +10,7 @@ import './inventory-manager.css';
 
 class InventoryManager extends React.Component{
 
+
   componentDidMount(){
     this.props.dispatch(fetchItems());
   }
