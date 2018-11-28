@@ -59,8 +59,7 @@ export class ItemList extends React.Component {
     this.setState({
       showingItem: false,
       editingItem: false
-    })
-    console.log('called closeItem()');
+    });
   }
 
   editItem(e,id){

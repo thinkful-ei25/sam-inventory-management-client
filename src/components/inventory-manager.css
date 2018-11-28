@@ -88,3 +88,8 @@ button:hover{
   background-color: #090;
 }
 
+.form-warning, .form-error{
+  color: red;
+  font-style: italic;
+}
+

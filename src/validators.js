@@ -4,4 +4,4 @@ export const notEmpty = value => value.trim() !=='' ? undefined : 'Field cannot 
 
 export const onlyNumbers = value => !isNaN(value) ? undefined : 'Value is not a number!';
 
-export const notZero = value =
+export const notZero = value => parseInt(value,10)!==0 ? undefined: 'Value cannot be 0!';
