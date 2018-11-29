@@ -23,9 +23,9 @@ export class AddItem extends React.Component{
     if(this.state.addingItem){
       return(
         <div>
-          <div className="add-item-container">
+          <div className="add-item-container open">
             <ItemForm handleClick={e => this.handleClick(e)} />
-            <button onClick={(e) => this.handleClick(e)}>Exit</button>
+            <button className="exit" onClick={(e) => this.handleClick(e)}>Exit</button>
           </div>
         </div>
 

@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.header-bar > button {
+  display: inline-block;
+  position: absolute;
+  right: 100px;
+  margin: 10px;
+}
+
+.header-bar {
+  background-color: #0c0;
+  font-family:'Fira Mono', monospace;
+  font-size:20px;
+}
+
+h1 {
+  display: inline-block;
+  margin: 10px;
+}
+
