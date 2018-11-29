@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import requiresLogin from './requires-login';
 import {fetchItems} from '../actions/items';
 
 import Inventory from './inventory';
-import Header from './header';
 import AddItem from './add-item';
 
 import './inventory-manager.css';
 
 class InventoryManager extends React.Component{
+
 
   componentDidMount(){
     this.props.dispatch(fetchItems());
@@ -16,12 +17,9 @@ class InventoryManager extends React.Component{
 
   render() {
 
-    
     return (
       <div>
-        <Header />
         <main role="main" className="screen">
-          <h1>Inventory Manager</h1>
           <AddItem />
           <Inventory />
         </main>
@@ -40,4 +38,4 @@ const mapStateToProps = state => {
   showingModal : state.itemReducer.showingModal
 }};
 
-export default connect(mapStateToProps)(InventoryManager);
+export default requiresLogin()(connect(mapStateToProps)(InventoryManager)) ;

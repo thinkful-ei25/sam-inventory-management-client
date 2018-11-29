@@ -108,4 +108,3 @@ EditForm = reduxForm({
 })(EditForm);
 
 export default connect(mapStateToProps)(EditForm);
-
