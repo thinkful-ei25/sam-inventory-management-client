@@ -1,7 +1,7 @@
 import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {connect} from 'react-redux';
-//import {required, isNumber} from '../validators';
+import {required, onlyNumbers, notEmpty, notZero} from '../validators';
 import Input from './input';
 import {addItem, toggleModal} from '../actions/items';
 
@@ -42,11 +42,26 @@ export class ItemForm extends React.Component{
         {successMessage}
         {errorMessage}
         <label htmlFor="name">Item Name</label>
-        <Field component={Input} element="input" type="text" name="name" id="name"></Field>
+        <Field 
+          component={Input} 
+          element="input" 
+          type="text" 
+          name="name" 
+          id="name"
+          validate={[required, notEmpty]}></Field>
         <label htmlFor="weight">Item Weight</label>
-        <Field component={Input} type="number" name="weight" id="weight"></Field>
+        <Field 
+          component={Input} 
+          type="number" 
+          name="weight" 
+          id="weight"
+          validate={[required,notEmpty,onlyNumbers,notZero]}></Field>
         <label htmlFor="category">Item Category </label>
-        <Field component="select" id="category" name="category">
+        <Field 
+          component="select" 
+          id="category" 
+          name="category"
+          validate={[required]}>
           <option value="weapons">Weapon</option>
           <option value="apparel">Apparel</option>
           <option value="aid">Aid</option>
@@ -54,9 +69,15 @@ export class ItemForm extends React.Component{
           <option value="misc">Misc.</option>
         </Field><br />
         <label htmlFor="quantity">Item Quantity</label>
-        <Field component={Input} type="number" name="quantity" id="quanity"></Field>
+        <Field 
+          component={Input} 
+          type="number" 
+          name="quantity" 
+          id="quanity"
+          validate={[required, notEmpty, onlyNumbers,notZero]}></Field>
         <label htmlFor="location">Where do you want to store your item? </label>
-        <Field component="select" id="location" name="location">
+        <Field component="select" id="location" name="location" 
+        validate={[required]}>
           <option value="locker">Locker</option>
           <option value="backpack">Backpack</option>
         </Field><br />
