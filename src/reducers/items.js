@@ -14,17 +14,15 @@ import {
   EDIT_ITEM_ERROR,
   EDIT_ITEM_REQUEST,
   EDIT_ITEM_SUCCESS,
-  TOGGLE_MODAL
+  //TOGGLE_MODAL
 }  from '../actions/items';
 
 const initialState = {
   items : [],
   loading: false,
   error: null,
-  addingItem: false,
-  expandedItem: null,
-  editingItem: false,
-  showingModal: false
+  expandedItem: null
+  //, showingModal: false
 };
 
 export default function itemReducer(state=initialState, action){
@@ -130,12 +128,13 @@ export default function itemReducer(state=initialState, action){
       items: [],
       error: action.error
     };
-  } else if(action.type === TOGGLE_MODAL){
-    return {
-      ...state,
-      loading: false,
-      showingModal: action.value
-    }
   }
+  // } else if(action.type === TOGGLE_MODAL){
+  //   return {
+  //     ...state,
+  //     loading: false,
+  //     showingModal: action.value
+  //   }
+  // }
   return state;
 }
