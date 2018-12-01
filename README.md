@@ -12,6 +12,8 @@ in certain locations in the map and has a hard limit on the total weight of item
 
 With this inventory manager app, I hope to help users track the items in their inventory anywhere in the game. Ideally, players would be able to see the items in their locker without having to trek across the map to designated locations and plan what items that they should pick or drop accordingly.
 
+[You can open the application here.](https://inventory-management-app-fo76.herokuapp.com/)
+
 ## Tech Stack
 
 ### Client - Front End (React.js, Redux)
@@ -39,7 +41,7 @@ All persistent data is stored and accessed on Mongodb on mlab.com. Mongoose is u
 
 ### Client
 
-Heroku App: https://inventory-management-app-fo76.herokuapp.com/
+[Heroku App](https://inventory-management-app-fo76.herokuapp.com/): https://inventory-management-app-fo76.herokuapp.com/
 
 Github Repo: https://github.com/thinkful-ei25/sam-inventory-management-client
 
