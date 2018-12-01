@@ -12,7 +12,7 @@ main {
   box-sizing:border-box;
   font-family:'Fira Mono', monospace;
   font-size:20px;
-  height:200vh;
+  height:300vh;
   overflow:hidden;
   padding:10vmin;
   width:100vw;

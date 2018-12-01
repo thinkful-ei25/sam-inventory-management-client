@@ -1,0 +1,17 @@
+.about-header {
+  margin-left: 0;
+}
+
+.about-section {
+  max-width: 1000px;
+}
+
+@media only screen and (max-width: 600px){
+  .about-header{
+    font-size: 20px;
+  }
+
+  .about-p {
+    font-size: 15px;
+  }
+}

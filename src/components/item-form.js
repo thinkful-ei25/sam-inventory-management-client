@@ -12,6 +12,7 @@ export class ItemForm extends React.Component{
   handleSubmit(values){
     this.props.dispatch(addItem(values));
     this.props.dispatch(toggleModal(false));
+    this.props.handleClick();
   }
 
   

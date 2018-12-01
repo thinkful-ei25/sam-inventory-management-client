@@ -41,10 +41,10 @@ export class ItemList extends React.Component {
       let item = this.props.expandedItem;
       return(
         <div className="item-popup">
-          <span>name: {item.name} </span>
-          <span>category: {item.category} </span>
-          <span>quantity: {item.quantity} </span>
-          <span>weight: {item.weight} </span>
+          <div>name: {item.name} </div>
+          <div>category: {item.category} </div>
+          <div>quantity: {item.quantity} </div>
+          <div>weight: {item.weight} </div>
           <button onClick={e=>this.editItem(e,item.id)}>Edit Item</button>
           <button onClick={e=>this.dropItem(e,item.id)}>Drop Item</button>
           <button onClick={e=>this.closeItem(e)}>Close</button>

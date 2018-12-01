@@ -35,6 +35,10 @@
 }
 
 .link:visited{
+  color: #060;
+}
+
+.link{
   color: #0c0;
 }
 

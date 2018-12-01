@@ -16,6 +16,8 @@ export function LandingPage(props) {
       <h2>Welcome to the Inventory Manager App</h2>
       <LoginForm />
       <Link to="/register" className="link">Register</Link>
+      <br /><br />
+      <Link to="/about" className="link">About the App</Link>
     </div>
   );
 }
