@@ -1,5 +1,7 @@
 import {API_BASE_URL} from '../config';
 
+
+
 export const FETCH_ITEMS_REQUEST = 'FETCH_ITEMS_REQUEST';
 export const fetchItemsRequest = () => ({
   type: FETCH_ITEMS_REQUEST
@@ -17,9 +19,8 @@ export const fetchItemsError = error => ({
   error
 });
 
-export const fetchItems = () => (dispatch, getState) => {
+export const fetchItems = (authToken) => (dispatch) => {
   dispatch(fetchItemsRequest());
-  const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items`,{
     method: 'GET',
     headers: {Authorization: `Bearer ${authToken}`}
@@ -60,9 +61,8 @@ export const fetchItemError = error => ({
   error
 });
 
-export const fetchItem = (id) => (dispatch, getState) => {
+export const fetchItem = (id, authToken) => (dispatch) => {
   dispatch(fetchItemRequest());
-  const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items/${id}`,{
     method: 'GET',
     headers: {Authorization: `Bearer ${authToken}`}
@@ -103,9 +103,8 @@ export const addItemError = error => ({
   error
 });
 
-export const addItem = item => (dispatch, getState) => {
+export const addItem = (item, authToken) => (dispatch, getState) => {
   dispatch(addItemRequest());
-  const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items`,
   {
     method: 'POST',
@@ -159,7 +158,7 @@ export const editItemError = error => ({
   error
 });
 
-export const editItem = (item) => (dispatch, getState) =>{
+export const editItem = (item, authToken) => (dispatch, getState) =>{
   dispatch(editItemRequest());
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items/${item.id}`,
@@ -214,7 +213,7 @@ export const dropItemError = error => ({
   error
 });
 
-export const dropItem = (id) => (dispatch,getState) => {
+export const dropItem = (id, authToken) => (dispatch,getState) => {
   dispatch(dropItemRequest());
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items/${id}`,{

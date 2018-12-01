@@ -17,6 +17,8 @@ import {FETCH_ITEMS_REQUEST, FETCH_ITEMS_ERROR,
 
 import {API_BASE_URL} from '../config';
 
+
+
 describe('fetchItemsRequest', ()=>{
   it('Should return the action', ()=>{
     const action = fetchItemsRequest();
@@ -143,144 +145,144 @@ describe('dropItemError', ()=>{
   });
 });
 
-describe('fetchItems', ()=>{
-  it('Should dispatch fetchItemsSuccess', ()=>{
-    const items = 'some items';
+// describe('fetchItems', ()=>{
+//   it('Should dispatch fetchItemsSuccess', ()=>{
+//     const items = 'some items';
 
-    global.fetch = jest.fn().mockImplementation(()=>
-      Promise.resolve({
-        ok: true,
-        json(){
-          return items;
-        }
-      })
-    );
+//     global.fetch = jest.fn().mockImplementation(()=>
+//       Promise.resolve({
+//         ok: true,
+//         json(){
+//           return items;
+//         }
+//       })
+//     );
 
-      const dispatch = jest.fn();
-      return fetchItems()(dispatch).then(()=>{
-        expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items`);
-        expect(dispatch).toHaveBeenCalledWith(fetchItemsSuccess(items));
-      });
+//       const dispatch = jest.fn();
+//       return fetchItems()(dispatch).then(()=>{
+//         expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items`);
+//         expect(dispatch).toHaveBeenCalledWith(fetchItemsSuccess(items));
+//       });
 
-  });
-});
+//   });
+// });
 
-describe('fetchItem', ()=>{
-  it('Should dispatch fetchItemSuccess', ()=>{
-    const item = {
-      id: 1234 
-    };
-    const id = 1234;
+// describe('fetchItem', ()=>{
+//   it('Should dispatch fetchItemSuccess', ()=>{
+//     const item = {
+//       id: 1234 
+//     };
+//     const id = 1234;
 
-    global.fetch = jest.fn().mockImplementation(()=>
-      Promise.resolve({
-        ok: true,
-        json(){
-          return item;
-        }
-      })
-    );
+//     global.fetch = jest.fn().mockImplementation(()=>
+//       Promise.resolve({
+//         ok: true,
+//         json(){
+//           return item;
+//         }
+//       })
+//     );
 
-      const dispatch = jest.fn();
-      return fetchItem(id)(dispatch).then(()=>{
-        expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items/${item.id}`);
-        expect(dispatch).toHaveBeenCalledWith(fetchItemSuccess(item));
-      });
+//       const dispatch = jest.fn();
+//       return fetchItem(id)(dispatch).then(()=>{
+//         expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items/${item.id}`);
+//         expect(dispatch).toHaveBeenCalledWith(fetchItemSuccess(item));
+//       });
 
-  });
-});
+//   });
+// });
 
-describe('editItem', ()=>{
-  it('Should dispatch editItemSuccess', ()=>{
-    const item = {
-      id: 1234 
-    };
+// describe('editItem', ()=>{
+//   it('Should dispatch editItemSuccess', ()=>{
+//     const item = {
+//       id: 1234 
+//     };
   
 
-    global.fetch = jest.fn().mockImplementation(()=>
-      Promise.resolve({
-        ok: true,
-        json(){
-          return item;
-        }
-      })
-    );
+//     global.fetch = jest.fn().mockImplementation(()=>
+//       Promise.resolve({
+//         ok: true,
+//         json(){
+//           return item;
+//         }
+//       })
+//     );
 
-    const res = {
-      body: JSON.stringify(item),
-      method: 'PUT',
-      headers: {
-        'Content-Type' : 'application/json'
-      }
-    }
+//     const res = {
+//       body: JSON.stringify(item),
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type' : 'application/json'
+//       }
+//     }
 
-    const dispatch = jest.fn();
-    return editItem(item)(dispatch).then(() => {
-      expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items/${item.id}`, res);
-      expect(dispatch).toHaveBeenCalledWith(editItemSuccess(item));
-    });
+//     const dispatch = jest.fn();
+//     return editItem(item)(dispatch).then(() => {
+//       expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items/${item.id}`, res);
+//       expect(dispatch).toHaveBeenCalledWith(editItemSuccess(item));
+//     });
 
-  });
-});
+//   });
+// });
 
-describe('addItem', () => {
-  it('Should dispatch addItemSuccess', () => {
-    const item = {
-      id: 1234
-    };
-
-
-    global.fetch = jest.fn().mockImplementation(() =>
-      Promise.resolve({
-        ok: true,
-        json() {
-          return item;
-        }
-      })
-    );
-
-    const res = {
-      body: JSON.stringify(item),
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    const dispatch = jest.fn();
-    return addItem(item)(dispatch).then(() => {
-      expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items`, res);
-      expect(dispatch).toHaveBeenCalledWith(addItemSuccess(item));
-    });
-
-  });
-});
-
-describe('dropItem', () => {
-  it('Should dispatch dropItemSuccess', () => {
-    const item = {
-      id: 1234
-    };
+// describe('addItem', () => {
+//   it('Should dispatch addItemSuccess', () => {
+//     const item = {
+//       id: 1234
+//     };
 
 
-    global.fetch = jest.fn().mockImplementation(() =>
-      Promise.resolve({
-        ok: true,
-        json() {
-          return item;
-        }
-      })
-    );
+//     global.fetch = jest.fn().mockImplementation(() =>
+//       Promise.resolve({
+//         ok: true,
+//         json() {
+//           return item;
+//         }
+//       })
+//     );
 
-    const res = {
-      method: 'DELETE',
-    }
+//     const res = {
+//       body: JSON.stringify(item),
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     }
 
-    const dispatch = jest.fn();
-    return dropItem(item.id)(dispatch).then(() => {
-      expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items/${item.id}`, res);
-      expect(dispatch).toHaveBeenCalledWith(dropItemSuccess(item.id));
-    });
+//     const dispatch = jest.fn();
+//     return addItem(item)(dispatch).then(() => {
+//       expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items`, res);
+//       expect(dispatch).toHaveBeenCalledWith(addItemSuccess(item));
+//     });
 
-  });
-});
+//   });
+// });
+
+// describe('dropItem', () => {
+//   it('Should dispatch dropItemSuccess', () => {
+//     const item = {
+//       id: 1234
+//     };
+
+
+//     global.fetch = jest.fn().mockImplementation(() =>
+//       Promise.resolve({
+//         ok: true,
+//         json() {
+//           return item;
+//         }
+//       })
+//     );
+
+//     const res = {
+//       method: 'DELETE',
+//     }
+
+//     const dispatch = jest.fn();
+//     return dropItem(item.id)(dispatch).then(() => {
+//       expect(fetch).toHaveBeenCalledWith(`${API_BASE_URL}/api/items/${item.id}`, res);
+//       expect(dispatch).toHaveBeenCalledWith(dropItemSuccess(item.id));
+//     });
+
+//   });
+// });
