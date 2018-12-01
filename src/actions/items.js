@@ -17,9 +17,13 @@ export const fetchItemsError = error => ({
   error
 });
 
-export const fetchItems = () => (dispatch) => {
+export const fetchItems = () => (dispatch, getState) => {
   dispatch(fetchItemsRequest());
-  return fetch(`${API_BASE_URL}/api/items`)
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/items`,{
+    method: 'GET',
+    headers: {Authorization: `Bearer ${authToken}`}
+  })
     .then((res)=>{
       if(!res.ok){
         const contentType = res.headers.get('content-type');
@@ -56,9 +60,13 @@ export const fetchItemError = error => ({
   error
 });
 
-export const fetchItem = (id) => (dispatch) => {
+export const fetchItem = (id) => (dispatch, getState) => {
   dispatch(fetchItemRequest());
-  return fetch(`${API_BASE_URL}/api/items/${id}`)
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/items/${id}`,{
+    method: 'GET',
+    headers: {Authorization: `Bearer ${authToken}`}
+  })
     .then((res)=>{
       if(!res.ok){
         const contentType = res.headers.get('content-type');
@@ -95,14 +103,17 @@ export const addItemError = error => ({
   error
 });
 
-export const addItem = item => (dispatch) => {
+export const addItem = item => (dispatch, getState) => {
   dispatch(addItemRequest());
+  const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items`,
   {
     method: 'POST',
     body: JSON.stringify(item),
     headers: {
-      'Content-Type' : 'application/json'
+      'Content-Type' : 'application/json',
+      'Authorization': `Bearer ${authToken}`
+
     }
   })
   .then(res=>{
@@ -148,14 +159,16 @@ export const editItemError = error => ({
   error
 });
 
-export const editItem = (item) => dispatch =>{
+export const editItem = (item) => (dispatch, getState) =>{
   dispatch(editItemRequest());
+  const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/items/${item.id}`,
   {
     method: 'PUT',
     body: JSON.stringify(item),
     headers: {
-      'Content-Type' : 'application/json'
+      'Content-Type' : 'application/json',
+      'Authorization': `Bearer ${authToken}`
     }
   })
   .then(res=>{
@@ -201,9 +214,14 @@ export const dropItemError = error => ({
   error
 });
 
-export const dropItem = (id) => (dispatch) => {
+export const dropItem = (id) => (dispatch,getState) => {
   dispatch(dropItemRequest());
-  return fetch(`${API_BASE_URL}/api/items/${id}`,{method: "DELETE"})
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/items/${id}`,{
+      method: "DELETE",
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      }})
     .then((res)=>{
       if(!res.ok){
         const contentType = res.headers.get('content-type');

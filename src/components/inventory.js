@@ -36,7 +36,7 @@ export class Inventory extends React.Component{
     } else {
       weightClass='normal-weight';
     }
-
+    totalWeight = (totalWeight).toFixed(2);
     return (
       <span className={weightClass}>{totalWeight}/{limit}</span>
     );
