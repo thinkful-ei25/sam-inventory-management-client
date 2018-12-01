@@ -17,9 +17,14 @@ export const fetchItemsError = error => ({
   error
 });
 
-export const fetchItems = () => (dispatch) => {
+export const fetchItems = () => (dispatch, getState) => {
   dispatch(fetchItemsRequest());
-  return fetch(`${API_BASE_URL}/api/items`)
+  const authToken = getState().auth.authToken;
+  console.log(authToken);
+  return fetch(`${API_BASE_URL}/api/items`,{
+      method: 'GET',
+      headers: {Authorization: `Bearer ${authToken}`}
+    })
     .then((res)=>{
       if(!res.ok){
         const contentType = res.headers.get('content-type');
