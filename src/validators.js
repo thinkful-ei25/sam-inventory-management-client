@@ -7,7 +7,7 @@ export const nonEmpty = value =>
 
 export const onlyNumbers = value => !isNaN(value) ? undefined : 'Value is not a number!';
 
-export const notZero = value => parseInt(value, 10) !== 0 ? undefined : 'Value cannot be zero!';
+export const notZero = value => parseFloat(value, 10) !== 0 ? undefined : 'Value cannot be zero!';
 
 export const isTrimmed = value =>
   value.trim() === value ? undefined : 'Cannot start or end with whitespace';

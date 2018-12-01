@@ -17,8 +17,8 @@ export class Inventory extends React.Component{
     let items = this.props.items;
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
-      let itemWeight = parseInt(item.weight,10);
-      let itemQuantity = parseInt(item.quantity,10);
+      let itemWeight = parseFloat(item.weight,10);
+      let itemQuantity = parseFloat(item.quantity,10);
       let itemTotal = itemQuantity*itemWeight;
       if (item.location === location) {
         totalWeight += itemTotal;
