@@ -46,14 +46,21 @@ Github Repo: https://github.com/thinkful-ei25/sam-inventory-management-server
 ## Screenshots
 
 ![HomePage](https://i.imgur.com/Cx1S1OZ.png)
+
 This is the homepage for the application, where the user can choose to login, register a new account, or read more about the app.
 ![RegistrationForm](https://i.imgur.com/fASCI29.png)
+
 This is the registration form for new users. Users only need a username and password.
 ![Dashboard with Character's Inventory](https://i.imgur.com/oZio8Yg.png)
+
 This is the default view the user will have upon logging in.
 ![Add Item Form](https://i.imgur.com/GuCSPfn.png)
+
+
 By clicking the 'Add Item' button, the user brings up this add item form.
 ![Expanded Item View](https://i.imgur.com/ZQ03a1T.png)
+
 By clicking on a specific item in the table of items, the user can bring up more detailed into on the item and bring up multiple buttons that allow the user to edit or drop the item.
 ![Edit Item Form](https://i.imgur.com/ddbufIp.png)
+
 By clicking the 'Edit Item' button, the user brings up an edit item form, where the original values of the item fill the inputs by default.
