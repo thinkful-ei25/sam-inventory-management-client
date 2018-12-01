@@ -12,7 +12,11 @@ in certain locations in the map and has a hard limit on the total weight of item
 
 With this inventory manager app, I hope to help users track the items in their inventory anywhere in the game. Ideally, players would be able to see the items in their locker without having to trek across the map to designated locations and plan what items that they should pick or drop accordingly.
 
-[You can open the application here.](https://inventory-management-app-fo76.herokuapp.com/)
+[You can open the application here.](https://inventory-management-app-fo76.herokuapp.com/).
+
+Username: 'testdemo'
+
+Password: 'password'
 
 ## Tech Stack
 
