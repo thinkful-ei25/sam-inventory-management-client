@@ -17,16 +17,22 @@ With this inventory manager app, I hope to help users track the items in their i
 ### Client - Front End (React.js, Redux)
 
 Components were rendered using React.js.
+
 Redux handles state management across all components.
+
 Routing handled by *react-router-dom*.
-Used *React-Tabs* library to simulate tabs in the user's inventory.
+
+Used *React-Tabs* library to simulate tab components in the user's inventory.
 
 
 ### Server - Back End (Node.js, MongoDB)
 
-The Inventory Management employs Node.js as the server-side runtime environment. 
+The Inventory Management employs Node.js as the server-side runtime environment.
+
 Routing and middleware are handled by express.js 
+
 Authentication is done with passport.js middleware, using JWT tokens in the local storage. Password encryption handled with bcrypt salted and hashed. 
+
 All persistent data is stored and accessed on Mongodb on mlab.com. Mongoose is used for various CRUD operations on the db, and for organizing data with the use of schemas and models.
 
 ## Links
