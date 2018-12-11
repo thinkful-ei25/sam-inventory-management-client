@@ -62,6 +62,7 @@ export class ItemForm extends React.Component{
           id="category" 
           name="category"
           validate={[required]}>
+          <option>Select a category...</option>
           <option value="weapons">Weapon</option>
           <option value="apparel">Apparel</option>
           <option value="aid">Aid</option>
@@ -78,6 +79,7 @@ export class ItemForm extends React.Component{
         <label htmlFor="location">Where do you want to store your item? </label>
         <Field component="select" id="location" name="location" 
         validate={[required]}>
+          <option>Select a location...</option>
           <option value="locker">Locker</option>
           <option value="backpack">Backpack</option>
         </Field><br />
@@ -97,6 +99,7 @@ export class ItemForm extends React.Component{
   
 
 }
+
 
 const mapStateToProps = state => {
   return {

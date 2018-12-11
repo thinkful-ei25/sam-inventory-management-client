@@ -6,16 +6,16 @@ import authReducer from './reducers/auth';
 import {loadAuthToken} from './local-storage';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
-const store = createStore(combineReducers( 
-  {form: formReducer, itemReducer, auth: authReducer}
- ), 
-  applyMiddleware(thunk));
+const store = createStore(combineReducers(
+    { form: formReducer, itemReducer, auth: authReducer }),
+    applyMiddleware(thunk)
+);
 
-  const authToken = loadAuthToken();
-  if (authToken) {
-      const token = authToken;
-      store.dispatch(setAuthToken(token));
-      store.dispatch(refreshAuthToken());
-  }
-  
-  export default store;
+const authToken = loadAuthToken();
+if (authToken) {
+    const token = authToken;
+    store.dispatch(setAuthToken(token));
+    store.dispatch(refreshAuthToken());
+}
+
+export default store;
